@@ -1,0 +1,46 @@
+The Longest Common Subsequence:
+
+
+#include <bits/stdc++.h>
+using namespace std;
+vector <int>longestCommonSubsequence(vector <int> a, vector <int> b) {
+    vector <int> c;
+    int len1 = a.size();
+    int len2 = b.size();
+    int arr[len1+1][len2+1];
+    for(int i=0;i<=len1;i++){
+        for(int j=0;j<=len2;j++){
+            if(i==0 || j==0) arr[i][j]=0;
+            else if(a[i-1] == b[j-1]){
+                arr[i][j] = 1 + arr[i-1][j-1];
+            }
+else
+} }
+arr[i][j]= max(arr[i-1][j], arr[i][j-1]);
+   int i = len1, j = len2;
+   while (i > 0 && j > 0){
+      if (a[i-1] == b[j-1]){
+          vector <int>::iterator it= c.begin();
+          c.insert(it,1,a[i-1]);
+          i--; j--;
+      }
+      else if (arr[i-1][j] > arr[i][j-1])   i--;
+      else  j--;
+}
+return c;
+}
+int max(int a,int b){
+    return a>b ? a : b;
+}
+int main() {
+    int n;
+    int m;
+    cin >> n >> m;
+    vector<int> a(n);
+    for(int a_i = 0; a_i < n; a_i++){
+       cin >> a[a_i];
+    }
+    vector<int> b(m);
+    for(int b_i = 0; b_i < m; b_i++){
+       cin >> b[b_i];
+    }
