@@ -1,0 +1,36 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int min(int x, int y, int z){
+   return min(min(x, y), z);
+}
+
+int dp[1025][1025];
+
+int editDistDP(int* str1, int* str2, int m, int n){
+    for (int i=0; i<=m; i++){
+        for (int j=0; j<=n; j++){  
+            if (i==0)   dp[i][j] = j;  
+            else if (j==0)   dp[i][j] = i; 
+            else if (str1[i-1] == str2[j-1])    dp[i][j] = dp[i-1][j-1];
+            else    dp[i][j] = 1 + min(dp[i][j-1],dp[i-1][j],dp[i-1][j-1]); 
+        }
+    }
+    return dp[m][n];
+}
+
+int main() {
+    int a[1005], b[1005];
+	int n, m;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	cin >> m;
+	for (int i = 0; i < m; i++)
+		cin >> b[i];
+	cout << editDistDP(a, b, n, m);
+} 
