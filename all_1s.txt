@@ -1,0 +1,43 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+
+ int countFlips(string str, int k)
+   {
+      int flips = 0, i=0;
+      int n = str.length() - k;
+      for(; i<=n; i++)
+      {
+        if(str[i] == '0')
+         {
+            // FLIP next k bits
+            for(int j=0; j<k; j++)
+                str[j+i] = (str[j+i] == '0') ? '1':'0';
+            flips++;
+         }
+      }
+       for(; i<str.length(); i++)
+          if(str[i] == '0')
+            return -1;
+      return flips;
+   }
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int t;
+    cin>>t;
+    while(t--){
+        string str;
+        cin>>str;
+        int k;
+        cin>>k;
+        int count = countFlips(str,k);
+        cout<<count<<endl;
+    }
+    return 0;
+}
