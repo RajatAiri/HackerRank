@@ -1,0 +1,26 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int num,arr[64];
+    cin>>num;
+    int i=0,r;
+    while(num!=0)
+    {
+    r = num%2;
+    arr[i++] = r;
+    num /= 2;
+    }
+    int count=0;
+    for(int j=i-1;j>=0;j--){
+        if(arr[j]==1) count++ ;
+    }
+    cout<<count; 
+    return 0;
+}
