@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the makingAnagrams function below.
+int makingAnagrams(string s1, string s2) {
+int len1 = s1.length();
+    int len2 = s2.length();
+vector<int> v1(26,0);
+vector<int> v2(26,0);
+    
+int i=0,j=0;
+    while(i< len1){
+        v1[s1[i++]-'a']++;
+    }
+    while(j< len2){
+        v2[s2[j++]-'a']++;
+    }
+
+    int count=0;
+for(int i=0;i<26;i++){
+    if(v1[i]!=v2[i]) count+=abs(v1[i]-v2[i]);
+}
+    
+    return count;
+}
+
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s1;
+    getline(cin, s1);
+
+    string s2;
+    getline(cin, s2);
+
+    int result = makingAnagrams(s1, s2);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
