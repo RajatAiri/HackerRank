@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the gemstones function below.
+int gemstones(vector<string> arr) {
+    int t=arr.size();
+    int ans[26];
+    memset(ans,0,sizeof(ans));
+    
+    for(int i=0;i<t;i++){
+        int st[26]={0};
+        string s=arr[i];
+        int len=s.length();
+        for(int j=0;j<len;j++){
+            st[s[j]-'a']=1;
+        }
+        for(int j=0;j<26;j++){
+            if(st[j]==1){
+                ans[j]++;
+            }
+        }
+    }
+    int sum=0;
+    for(auto i:ans){
+        if(i==t) sum++;
+    }
+    return sum;
+
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int n;
+    cin >> n;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    vector<string> arr(n);
+
+    for (int i = 0; i < n; i++) {
+        string arr_item;
+        getline(cin, arr_item);
+
+        arr[i] = arr_item;
+    }
+
+    int result = gemstones(arr);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
